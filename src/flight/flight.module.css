@@ -1,0 +1,22 @@
+.flights {
+    width: 70vw;
+    height: 100vw;
+}
+
+.carrier {
+
+}
+
+.price {
+
+}
+
+.duration {
+
+}
+
+.flight {
+    width: 500px;
+    min-height: 200px;
+    border: 1px solid black;
+}
