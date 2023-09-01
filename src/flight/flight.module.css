@@ -16,7 +16,58 @@
 }
 
 .flight {
-    width: 500px;
+    width: 800px;
     min-height: 200px;
     border: 1px solid black;
+}
+.header{
+    width: 100%;
+    height: 50px;
+    background: #0087c9;
+    display: flex;
+    justify-content: space-between;
+}
+.priceBlock{
+    display: flex;
+    flex-direction: column;
+}
+.price{
+    color:white;
+    text-align: right;
+}
+.button{
+    width: 100%;
+    height: 50px;
+    background:#ffb168 ;
+    color: white;
+    border: none;
+}
+.city-airport{
+   display: flex;
+    justify-content: center;
+    width: 100%;
+}
+.line{
+    width: 100%;
+    height: 1px;
+    background: lightgray;
+    margin: 10px 0;
+    opacity: 0.5;
+}
+.time{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.transfer{
+    text-align: center;
+    color: #ffb168;
+}
+
+.line2{
+    width: 100%;
+    height: 2px;
+    background: rgb(0,132,197);
+    margin: 10px 0;
+    opacity: 0.5;
 }
