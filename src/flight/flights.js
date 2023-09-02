@@ -11,7 +11,7 @@ export const Flights = () => {
         const outboundFlight = flights[i];
         const inboundFlight = flights[i + 1];
         if (outboundFlight && inboundFlight) {
-            groupedFlights.push({ outbound: outboundFlight, inbound: inboundFlight });
+            groupedFlights.push({outbound: outboundFlight, inbound: inboundFlight});
         }
     }
 
@@ -40,28 +40,23 @@ export const Flights = () => {
                         <div className={st.route}>
                             {leg.segments.map((segment, segmentIndex) => (
                                 <div key={segmentIndex} className={st.segmentContainer}>
-                                    {segment.departureCity && <span>{segment.departureCity.caption} ({segment.departureAirport.caption})</span>}
-                                    {segment.arrivalCity && <span> → {segment.arrivalCity.caption} ({segment.arrivalAirport.caption})</span>}
-                                </div>
-                            ))}
-                        </div>
-                        <div className={st.timeInfo}>
-                            {leg.segments.map((segment, segmentIndex) => (
-                                <div key={segmentIndex} className={st.segmentContainer}>
-                                    {segment.departureDate && <span>Вылет: {formatDateTime(segment.departureDate)}</span>}
-                                    {segment.arrivalDate && <span>Прилет: {formatDateTime(segment.arrivalDate)}</span>}
-                                    {leg.duration && <span>В пути: {Math.floor(leg.duration / 60)}ч {leg.duration % 60}мин</span>}
+                                    <div className={st.header}>
+                                        {segment.departureCity && `${segment.departureCity.caption} (${segment.departureAirport.caption})`}
+                                        {segment.arrivalCity && ` → ${segment.arrivalCity.caption} (${segment.arrivalAirport.caption})`}
+                                        <div className={st.line}></div>
+                                    </div>
+                                    <div className={st.time}>
+                                        {segment.departureDate && <span> {formatDateTime(segment.departureDate)}</span>}
+                                        {leg.duration &&
+                                            <span>В пути {Math.floor(leg.duration / 60)}ч {leg.duration % 60}мин</span>}
+                                        {segment.arrivalDate && <span> {formatDateTime(segment.arrivalDate)}</span>}
+                                    </div>
+                                    {segment.airline && <span>Рейс выполняет: {segment.airline.caption}</span>}
                                 </div>
                             ))}
                         </div>
                     </div>
-                    <div className={st.airlineInfo}>
-                        {leg.segments.map((segment, segmentIndex) => (
-                            <div key={segmentIndex} className={st.segmentContainer}>
-                                {segment.airline && <span>Рейс выполняет: {segment.airline.caption}</span>}
-                            </div>
-                        ))}
-                    </div>
+
                 </div>
             ))}
         </div>
@@ -72,10 +67,8 @@ export const Flights = () => {
             {groupedFlights.map((flightPair, index) => renderFlightPair(flightPair, index))}
         </div>
     );
-};
 
-
-
+}
 
 
 
