@@ -1,16 +1,17 @@
 import React from 'react';
 import s from "./flight.module.css";
+import {formatDateTime} from "../common/data";
 
-export const CityAirport = () => {
+export const CityAirport = (arrivalAirport,departureAirport,departureCity,arrivalDate,departureDate,arrivalCity) => {
     return (<div>
             <div className={s.cityAirport}>
-                <span> Москва, Шереметьево(СВО) </span> → <span>Лондон, Лондон, Хитроу (ЛНР)</span></div>
+           <span>{`${departureCity} (${departureAirport})`}</span>→ <span>{`${arrivalCity} (${arrivalAirport})`}</span></div>
             <div className={s.line}></div>
             <div>
                 <div className={s.time}>
-                    <span>20:40 18 avg, vt</span>
+                    <span>{formatDateTime(departureDate)}</span>
                     <span>20ч 45 мин</span>
-                    <span> 19 avg, sr 09:25</span>
+                    <span> {formatDateTime(arrivalDate)}</span>
                 </div>
 
                 <div className={s.transfer} > <span> 1 пересадка</span></div>
