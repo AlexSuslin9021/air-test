@@ -1,8 +1,7 @@
 import React from 'react';
-import st from './flight.module.css';
 import data from '../data/flights.json';
 import { formatDateTime } from '../common/data';
-import s from './flight.module.css';
+import s from './flight.module.css'
 
 export const Flights = () => {
     const flights = data.result.flights;
@@ -17,14 +16,14 @@ export const Flights = () => {
     }
 
     const renderFlightPair = (flightPair, index) => (
-        <div key={index} className={st.flightPair}>
-            <div className={st.flightContainer}>
-                <div className={st.flightDetails}>
+        <div key={index} className={s.flightPair}>
+            <div className={s.flightContainer}>
+                <div className={s.flightDetails}>
                     {renderLeg(flightPair.outbound.flight.legs, flightPair.outbound.flight.price.total.amount)} {/* Передаем цену */}
                 </div>
             </div>
-            <div className={st.flightContainer}>
-                <div className={st.flightDetails}>
+            <div className={s.flightContainer}>
+                <div className={s.flightDetails}>
                     {renderLeg(flightPair.inbound.flight.legs, flightPair.inbound.flight.price.total.amount)} {/* Передаем цену */}
                 </div>
             </div>
@@ -32,7 +31,7 @@ export const Flights = () => {
     );
 
     const renderLeg = (legs, price) => (
-        <div className={st.legContainer}>
+        <div className={s.legContainer}>
             <div className={s.header}>
                 <div>logo</div>
                 <div className={s.priceBlock}>
@@ -44,27 +43,32 @@ export const Flights = () => {
             </div>
             {legs.map((leg, legIndex) => (
                 <div key={legIndex}>
-                    <div className={st.routeInfo}>
-                        <div className={st.route}>
+                    <div className={s.routeInfo}>
+                        <div className={s.route}>
                             {leg.segments.map((segment, segmentIndex) => (
-                                <div key={segmentIndex} className={st.segmentContainer}>
-                                    <div>
+                                <div key={segmentIndex} className={s.segmentContainer}>
+                                    <div className={s.cityAirport}>
                                         {segment.departureCity && `${segment.departureCity.caption} (${segment.departureAirport.caption})`}
                                         {segment.arrivalCity && ` → ${segment.arrivalCity.caption} (${segment.arrivalAirport.caption})`}
-                                        <div className={st.line}></div>
+                                        <div className={s.line}></div>
                                     </div>
-                                    <div className={st.time}>
+                                    <div className={s.time}>
                                         {segment.departureDate && <span> {formatDateTime(segment.departureDate)}</span>}
                                         {leg.duration && (
                                             <span>В пути {Math.floor(leg.duration / 60)}ч {leg.duration % 60}мин</span>
                                         )}
                                         {segment.arrivalDate && <span> {formatDateTime(segment.arrivalDate)}</span>}
                                     </div>
-                                    {segment.airline && <span>Рейс выполняет: {segment.airline.caption}</span>}
+                                    {segment.airline && <span className={s.company}>Рейс выполняет: {segment.airline.caption}</span>}
+
                                 </div>
+
                             ))}
+
                         </div>
+
                     </div>
+
                 </div>
             ))}
             <button className={s.button}>ВЫБРАТЬ</button>
@@ -72,7 +76,7 @@ export const Flights = () => {
     );
 
     return (
-        <div className={st.flights}>
+        <div className={s.flights}>
             {groupedFlights.map((flightPair, index) => renderFlightPair(flightPair, index))}
         </div>
     );

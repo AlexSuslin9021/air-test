@@ -14,9 +14,9 @@ export const formatDateTime = (dateTimeStr) => {
 
     return (
         <div>
-            <span style={{ fontSize: '18px', color: 'black' }}>{formattedTime}</span>
+            <span style={{ fontSize: '18px', color: 'black', marginRight:'10px' }}>{formattedTime}</span>
             <span style={{ fontSize: '14px', color: 'blue' }}>
-                {`${formattedDate} ${dayOfWeek}`}
+                {`${formattedDate}  ${dayOfWeek}`}
             </span>
         </div>
     );
