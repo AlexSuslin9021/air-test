@@ -1,11 +1,12 @@
 import React from 'react';
-import data from '../data/flights.json';
 import { formatDateTime } from '../common/data';
 import s from './flight.module.css'
+import {useSelector} from "react-redux";
+
 
 export const Flights = () => {
-    const flights = data.result.flights;
-
+    const flights = useSelector((state) => state.flight);
+    console.log(flights)
     const groupedFlights = [];
     for (let i = 0; i < flights.length; i += 2) {
         const outboundFlight = flights[i];
