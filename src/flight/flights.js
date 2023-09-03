@@ -5,7 +5,7 @@ import {useSelector} from "react-redux";
 
 
 export const Flights = () => {
-    const flights = useSelector((state) => state.flight);
+     const flights = useSelector((state) => state.flights.flights);
     console.log(flights)
     const groupedFlights = [];
     for (let i = 0; i < flights.length; i += 2) {
@@ -82,11 +82,3 @@ export const Flights = () => {
         </div>
     );
 };
-
-
-
-
-
-
-
-

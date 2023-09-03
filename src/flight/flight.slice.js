@@ -16,4 +16,4 @@ const flightsSlice = createSlice({
 });
 
 export const { } = flightsSlice.actions;
-export const flight= flightsSlice.reducer;
+export const flights= flightsSlice.reducer;
