@@ -35,18 +35,23 @@ const flightsSlice = createSlice({
             });
         },
         flightsWithTransfers(state, action) {
-            return {
-                ...state,
-                flights: state.flights.filter((f) => f.flight.legs.every((leg) => leg.segments.length === 2)),
-            };
+            return state.flights.filter((f) => f.flight.legs.every((leg) => leg.segments.length === 2))
+
 
         },
         flightsNoTransfers(state, action) {
-            return {
-                ...state,
-                flights: state.flights.filter((f) => f.flight.legs.every((leg) => leg.segments.length > 2)),
-            };
+            state.flights.filter((f) => f.flight.legs.every((leg) => leg.segments.length > 2))
+
+            },
+        filterFlightsByCarrier(state, action) {
+            const selectedCarrier = action.payload;
+            if (selectedCarrier) {
+                state.flights = initialState.flights.filter((f) => f.flight.carrier.caption === selectedCarrier);
+            } else {
+                state.flights = initialState.flights;
             }
+        },
+
 
 
     },
@@ -60,5 +65,6 @@ export const sorting = flightsSlice.actions.sortingPrice;
 export const sortingArrivalTime = flightsSlice.actions.sortingArrivalTime;
 export const flightsWithTransfers = flightsSlice.actions.flightsWithTransfers;
 export const flightsNoTransfers = flightsSlice.actions.flightsNoTransfers;
+export const filterFlightsByCarrier = flightsSlice.actions.filterFlightsByCarrier;
 export const flights= flightsSlice.reducer;
 

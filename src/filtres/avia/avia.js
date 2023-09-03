@@ -1,22 +1,29 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import data from '../../data/flights.json'
+import { useDispatch } from 'react-redux';
+import { filterFlightsByCarrier } from '../../flight/flight.slice';
 
 export const Avia = () => {
-    const flights = useSelector((state) => state.flights.flights);
-    const uniqueCarriers = new Set();
-
+    const dispatch = useDispatch();
+    const uniqueCarriers = new Set(); // Создаем Set для хранения уникальных названий авиакомпаний
+    const flights = data.result.flights
     flights.forEach((el) => {
-        uniqueCarriers.add(el.flight.carrier.caption);
+        uniqueCarriers.add(el.flight.carrier.caption); // Добавляем уникальные названия авиакомпаний
     });
 
-    const uniqueCarriersArray = [...uniqueCarriers];
+    const handleCarrierChange = (selectedCarrier) => {
+        dispatch(filterFlightsByCarrier(selectedCarrier));
+    };
 
     return (
         <div>
-            {uniqueCarriersArray.map((carrier, index) => (
+            {Array.from(uniqueCarriers).map((carrier, index) => (
                 <div key={index}>
                     <label htmlFor="">
-                        <input type="checkbox" />
+                        <input
+                            type="checkbox"
+                            onChange={() => handleCarrierChange(carrier)}
+                        />
                         {carrier}
                     </label>
                 </div>
@@ -24,5 +31,7 @@ export const Avia = () => {
         </div>
     );
 };
+
+
 
 
